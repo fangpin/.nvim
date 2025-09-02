@@ -16,3 +16,25 @@ vim.opt.swapfile = false
 
 -- vscode
 -- vim.g.vscode = true
+--
+
+-- disable codeium notify
+vim.notify = function(msg, level) end
+
+-- -- 保存原始 notify 函数
+-- local original_notify = vim.notify
+--
+-- -- 自定义 notify，过滤掉 Codeium 的通知
+-- vim.notify = function(msg, level, opts)
+--   if type(msg) == "string" and msg:match("Codeium") then
+--     return
+--   end
+--   original_notify(msg, level, opts)
+-- end
+--
+-- -- 可选：关闭 Codeium 的状态提示
+-- vim.g.codeium_disable_status_prompt = 1
+
+vim.opt.colorscheme = "tokyonight"
+
+vim.opt.clipboard = "unnamedplus"
