@@ -1,0 +1,46 @@
+-- return {
+--   "pocco81/auto-save.nvim",
+--   -- event = { "InsertLeave", "TextChanged" }, -- 触发事件
+--   event = { "InsertLeave" }, -- 触发事件
+--   opts = {
+--     enabled = true, -- 启用插件
+--     execution_message = {
+--       message = function() -- 保存成功提示
+--         return ("AutoSave: saved at %s"):format(os.date("%H:%M:%S"))
+--       end,
+--       dim = 0, -- 不变暗
+--       cleaning_interval = 1250, -- 消息保留时间 ms
+--     },
+--     trigger_events = { "InsertLeave" }, -- 离开插入模式或内容改变时保存
+--     -- trigger_events = { "InsertLeave", "TextChanged" }, -- 离开插入模式或内容改变时保存
+--     write_all_buffers = false, -- 只保存当前 buffer
+--     debounce_delay = 1250, -- 防抖延迟（毫秒）
+--     condition = function(buf) -- 自定义条件
+--       local ft = vim.bo[buf].filetype
+--       -- 忽略某些文件类型
+--       local ignore_filetypes = {
+--         "gitcommit",
+--         "gitrebase",
+--         "svn",
+--         "hgcommit",
+--         "fugitive",
+--         "diff",
+--         "qf", -- quickfix
+--         "prompt", -- telescope prompt
+--       }
+--       return not vim.tbl_contains(ignore_filetypes, ft)
+--     end,
+--     -- 可选：保存时不要触发 autocmd（避免循环）
+--     -- noautocmd = false,
+--     -- 调试模式
+--     -- debug = false,
+--   },
+--   config = function(_, opts)
+--     require("auto-save").setup(opts)
+--     -- 可选：映射快捷键
+--     vim.api.nvim_create_user_command("AutoSaveToggle", function()
+--       require("auto-save").toggle()
+--     end, {})
+--     vim.keymap.set("n", "<leader>as", "<cmd>AutoSaveToggle<cr>", { desc = "Toggle AutoSave" })
+--   end,
+-- }
