@@ -4,6 +4,12 @@
 vim.keymap.set("i", "fd", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "fd", "<Esc>", { noremap = true, silent = true })
 
+-- macOS: Command+V 粘贴 (添加以下内容)
+if vim.fn.has("macunix") == 1 then
+  vim.keymap.set("n", "<D-v>", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard (normal)" })
+  vim.keymap.set("i", "<D-v>", "<C-r>+", { noremap = true, silent = true, desc = "Paste from clipboard (insert)" })
+end
+
 -- ~/.config/nvim/lua/config/keymaps.lua
 local misc = require("plugins.misc")
 
@@ -18,6 +24,9 @@ if vim.g.neovide then
   vim.keymap.set({ "n", "v" }, "<c-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<cr>")
   vim.keymap.set({ "n", "v" }, "<c-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<cr>")
   vim.keymap.set({ "n", "v" }, "<c-0>", ":lua vim.g.neovide_scale_factor = 1<cr>")
+  vim.g.neovide_input_macos_meta = true
+  vim.g.neovide_input_macos_cmd = true
+  vim.g.neovide_input_macos_alt = true
 end
 
 local function open_gemini_terminal()
