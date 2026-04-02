@@ -7,7 +7,7 @@ vim.keymap.set("n", "fd", "<Esc>", { noremap = true, silent = true })
 -- macOS: Command+V 粘贴 (添加以下内容)
 if vim.fn.has("macunix") == 1 then
   local function paste_in_terminal()
-    local content = vim.fn.getreg('+')
+    local content = vim.fn.getreg("+")
     vim.api.nvim_paste(content, true, -1)
   end
 
@@ -15,7 +15,12 @@ if vim.fn.has("macunix") == 1 then
   vim.keymap.set("i", "<D-v>", "<C-r>+", { noremap = true, silent = true, desc = "Paste from clipboard (insert)" })
   vim.keymap.set("v", "<D-v>", '"+P', { noremap = true, silent = true, desc = "Paste from clipboard (visual)" })
   vim.keymap.set("c", "<D-v>", "<C-r>+", { noremap = true, silent = true, desc = "Paste from clipboard (command)" })
-  vim.keymap.set("t", "<D-v>", paste_in_terminal, { noremap = true, silent = true, desc = "Paste from clipboard (terminal)" })
+  vim.keymap.set(
+    "t",
+    "<D-v>",
+    paste_in_terminal,
+    { noremap = true, silent = true, desc = "Paste from clipboard (terminal)" }
+  )
 end
 
 -- ~/.config/nvim/lua/config/keymaps.lua
@@ -41,5 +46,3 @@ local function open_gemini_terminal()
   vim.cmd("terminal gemini")
   vim.cmd("startinsert")
 end
-
-vim.keymap.set("n", "<leader>fT", open_gemini_terminal, { desc = "Open gemini", noremap = true, silent = true })
